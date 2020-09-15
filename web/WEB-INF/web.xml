@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <listener>
+        <listener-class>com.itheima.listener.SystemInitListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>permissionsFilter</filter-name>
+        <filter-class>com.itheima.filter.PermissionsFilter</filter-class>
+        <init-param>
+            <!--自定义初始化参数-->
+            <param-name>ignore</param-name>
+            <!--字符串值-->
+            <param-value>
+                /css/,/fonts/,/js/,/login.jsp,/code,/loginServlet
+            </param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>permissionsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

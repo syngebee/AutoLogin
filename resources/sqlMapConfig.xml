@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置 -->
+<configuration>
+    <!-- 将连接数据库的相关可变的配置抽取到properties文件中 -->
+    <properties resource="jdbc.properties"></properties>
+    <!-- 给实体对象起别名 -->
+    <typeAliases>
+        <!-- 给包下的所有类起别名
+                别名称为,类的类名称,不区分大小写
+         -->
+        <package name="com.itheima.pojo"></package>
+    </typeAliases>
+    <!-- 环境 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+                <property name="poolMaximumActiveConnections" value="100"/>
+                <property name="poolMaximumIdleConnections" value="100"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 配置sql映射文件的路径 -->
+    <mappers>
+        <!--
+            配置sql映射文件所在的包:
+                约定:
+                    1.sql映射文件的名称必须要和接口的名称保持一致
+                    2.sql映射文件的路径必须要和接口的路径保持一致
+        -->
+        <package name="com.itheima.dao"></package>
+    </mappers>
+</configuration>
